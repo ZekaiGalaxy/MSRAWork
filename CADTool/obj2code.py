@@ -256,35 +256,42 @@ def debug(path):
     checkp('RECOVER JSON data',json_data_)
     assert json_data_ == formatted_json_data
 
+
+def preprocess():
+    json_files = find_file_with_pattern('/f_ndata/zekai/data/cad_json/0001', '.json')
+    print(len(json_files))
+
+
 if __name__ == '__main__':
-    folder_path = 'example_obj'
-    obj_files = find_file_with_pattern(folder_path,'.obj')
+    preprocess()
+    # folder_path = 'example_obj'
+    # obj_files = find_file_with_pattern(folder_path,'.obj')
 
-    for path in obj_files:
-        # load obj
-        obj_data = load_obj(path)
-        # checkp('OBJ data',obj_data)
+    # for path in obj_files:
+    #     # load obj
+    #     obj_data = load_obj(path)
+    #     # checkp('OBJ data',obj_data)
 
-        # obj -> json
-        json_data = obj2json(obj_data)
-        # checkp('JSON data',json_data)
+    #     # obj -> json
+    #     json_data = obj2json(obj_data)
+    #     # checkp('JSON data',json_data)
 
-        # json -> f_json
-        formatted_json_data = format_json(json_data)
-        # checkp('Formatted JSON data',formatted_json_data)
+    #     # json -> f_json
+    #     formatted_json_data = format_json(json_data)
+    #     # checkp('Formatted JSON data',formatted_json_data)
 
-        # f_json -> code
-        code_data = json2code(formatted_json_data)
-        checkp('CODE data',code_data)
-        save_code(code_data, path.replace('example_obj','example_code').replace('param.obj','format.code'))
+    #     # f_json -> code
+    #     code_data = json2code(formatted_json_data)
+    #     checkp('CODE data',code_data)
+    #     save_code(code_data, path.replace('example_obj','example_code').replace('param.obj','format.code'))
 
-        # code -> json
-        json_data_ = code2json(code_data)
-        checkp('RECOVER JSON data',json_data_)
+    #     # code -> json
+    #     json_data_ = code2json(code_data)
+    #     checkp('RECOVER JSON data',json_data_)
 
-        # json -> obj
-        obj_data_ = json2obj(formatted_json_data)
-        save_obj(obj_data_, path.replace('example_obj','formatted_obj').replace('param','format'))
+    #     # json -> obj
+    #     obj_data_ = json2obj(formatted_json_data)
+    #     save_obj(obj_data_, path.replace('example_obj','formatted_obj').replace('param','format'))
         # checkp('RECOVER OBJ data',obj_data_)
 
     # debug('example_obj/00007/00007_000_param.obj')
