@@ -1,11 +1,7 @@
-from transformers import AutoTokenizer
+from transformers import LlamaTokenizer
 
-model_path = '/share2/wangyq/resources/models/Llama-2-7b-chat-hf'
-tokenizer = AutoTokenizer.from_pretrained(
-        model_path,
-        use_fast=True,
-        padding_side="right", 
-)
+model_path = '/f_ndata/zekai/models/CodeLlama-7b-hf'
+tokenizer = LlamaTokenizer.from_pretrained(model_path)
 
 special_tokens = ["<face>","</face>","<loop>","</loop>",'type="outer"','type="inner"','<Line>','<Arc>','<Cricle>']
 for i in range(20):
