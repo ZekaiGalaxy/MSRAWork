@@ -1,0 +1,25 @@
+deepspeed --num_gpus 8 \
+    --num_nodes 1 \
+    train_svg_offline_v1.py \
+    --model_name_or_path "/zecheng/model_hub/CodeLlama-7b-hf" \
+    --data_path "/zecheng/svg/icon-shop/meta_data" \
+    --output_dir "/zecheng/svg_model_hub/CodeLlama-7b-offline_v3" \
+    --num_train_epochs 20 \
+    --model_max_length 2048 \
+    --per_device_train_batch_size 8 \
+    --per_device_eval_batch_size 8 \
+    --gradient_accumulation_steps 1 \
+    --evaluation_strategy "no" \
+    --save_strategy "epoch" \
+    --save_steps 100 \
+    --save_total_limit 5 \
+    --learning_rate 3e-5 \
+    --warmup_steps 100 \
+    --logging_steps 1 \
+    --dataloader_num_workers 20 \
+    --lr_scheduler_type "cosine" \
+    --report_to "tensorboard" \
+    --gradient_checkpointing True \
+    --deepspeed configs/deepspeed_config_2.json \
+    --fp16 True \
+    --remove_unused_columns False;
