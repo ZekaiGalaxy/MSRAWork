@@ -1,0 +1,19 @@
+# height
+<height> 95
+
+# define nodes
+<node0> (-181,54)
+<node1> (5,0)
+<node2> (-112,54)
+
+# draw face
+<face>
+    <loop type="outer">
+        <Circle> <node0> <node1>
+    </loop>
+</face>
+<face>
+    <loop type="outer">
+        <Circle> <node2> <node1>
+    </loop>
+</face>

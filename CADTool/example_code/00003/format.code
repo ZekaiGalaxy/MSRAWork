@@ -1,0 +1,18 @@
+# height
+<height> 51
+
+# define nodes
+<node0> (-208,68)
+<node1> (-85,68)
+<node2> (-113,96)
+<node3> (-126,-37)
+<node4> (-161,92)
+
+# draw face
+<face>
+    <loop type="outer">
+        <Line> <node0> <node1>
+        <Line> <node1> <node2>
+        <Arc> <node2> <node4> <node3> <node0>
+    </loop>
+</face>

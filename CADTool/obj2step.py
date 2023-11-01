@@ -39,8 +39,9 @@ def find_files(folder, extension):
 
 def run_parallel(project_folder):
     output_folder = project_folder
+    print(output_folder)
 
-    param_objs = find_files(project_folder, 'param.obj')
+    param_objs = find_files(project_folder, '.obj')
 
     cur_solid = None
     extrude_idx = 0
