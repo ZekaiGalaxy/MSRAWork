@@ -1,23 +1,16 @@
 import sys
-sys.path.append("/workspace/zecheng/ns/custom_llama_x")
-# from SvgDataset import *
-from custom_dataset import *
 import copy
 import random
 from dataclasses import dataclass, field
 from typing import Optional, Dict, Sequence
 import os
-
 import torch
 import torch.distributed
 import transformers
-from transformers import Trainer
-
-IGNORE_INDEX = -100
-DEFAULT_PAD_TOKEN = "[PAD]"
-DEFAULT_EOS_TOKEN = "</s>"
-DEFAULT_BOS_TOKEN = "</s>"
-DEFAULT_UNK_TOKEN = "</s>"
+from transformers import Trainer, DataCollatorForLanguageModeling
+from datasets import Dataset
+import os
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
 @dataclass
 class ModelArguments:
@@ -30,164 +23,36 @@ class DataArguments:
 @dataclass
 class TrainingArguments(transformers.TrainingArguments):
     cache_dir: Optional[str] = field(default=None)
-    optim: str = field(default="adamw_torch")
-    model_max_length: int = field(
-        default=512,
-        metadata={"help": "Maximum sequence length. Sequences will be right padded (and possibly truncated)."},
-    )
-    mask_ratio: float = field(default=0.5)
-    n_mask: int = field(default=4)
-    hybrid: str = field(default="keywords")  # description, hybrid
-    is_augment: bool = field(default=False)
+
+def load_text(path):
+    with open(path, 'r') as f:
+        data = f.read()
+        return data.strip().split('\n')
+
+class CADDataset(Dataset):
+    def __init__(self, data, tokenizer):
+        self.tokenizer = tokenizer
+        self.dataset = data
+
+    def __len__(self):
+        return len(self.dataset)
     
-def safe_save_model_for_hf_trainer(trainer: transformers.Trainer, output_dir: str):
-    """Collects the state dict and dump to disk."""
-    state_dict = trainer.model.state_dict()
-    if trainer.args.should_save:
-        cpu_state_dict = {key: value.cpu() for key, value in state_dict.items()}
-        del state_dict
-        trainer._save(output_dir, state_dict=cpu_state_dict)  # noqa
-
-
-def smart_tokenizer_and_embedding_resize(
-    special_tokens_dict: Dict,
-    tokenizer: transformers.PreTrainedTokenizer,
-    model: transformers.PreTrainedModel,
-):
-    """Resize tokenizer and embedding.
-
-    Note: This is the unoptimized version that may make your embedding size not be divisible by 64.
-    """
-    num_new_tokens = tokenizer.add_special_tokens(special_tokens_dict)
-    model.resize_token_embeddings(len(tokenizer))
-
-    if num_new_tokens > 0:
-        input_embeddings = model.get_input_embeddings().weight.data
-        output_embeddings = model.get_output_embeddings().weight.data
-
-        input_embeddings_avg = input_embeddings[:-num_new_tokens].mean(dim=0, keepdim=True)
-        output_embeddings_avg = output_embeddings[:-num_new_tokens].mean(dim=0, keepdim=True)
-
-        input_embeddings[-num_new_tokens:] = input_embeddings_avg
-        output_embeddings[-num_new_tokens:] = output_embeddings_avg
-
-
-def _tokenize_fn(strings: Sequence[str], tokenizer: transformers.PreTrainedTokenizer) -> Dict:
-    """Tokenize a list of strings."""
-    tokenized_list = [
-        tokenizer(
-            text,
+    def __getitem__(self, idx):
+        cad_code = self.dataset[idx]['text']
+        seq_inputs = self.tokenizer(
+            cad_code, 
+            padding="max_length", 
+            truncation=True, 
+            max_length=512,
             return_tensors="pt",
-            padding="longest",
-            max_length=tokenizer.model_max_length,
-            truncation=True,
         )
-        for text in strings
-    ]
-    input_ids = labels = [tokenized.input_ids[0] for tokenized in tokenized_list]
-    input_ids_lens = labels_lens = [
-        tokenized.input_ids.ne(tokenizer.pad_token_id).sum().item() for tokenized in tokenized_list
-    ]
-    return dict(
-        input_ids=input_ids,
-        labels=labels,
-        input_ids_lens=input_ids_lens,
-        labels_lens=labels_lens,
-    )
-
-
-def preprocess(
-    sources: Sequence[str],
-    targets: Sequence[str],
-    tokenizer: transformers.PreTrainedTokenizer,
-) -> Dict:
-    """Preprocess the data by tokenizing."""
-    examples = [s + t for s, t in zip(sources, targets)]
-    examples_tokenized, sources_tokenized = [_tokenize_fn(strings, tokenizer) for strings in (examples, sources)]
-    input_ids = examples_tokenized["input_ids"]
-    labels = copy.deepcopy(input_ids)
-    for label, source_len in zip(labels, sources_tokenized["input_ids_lens"]):
-        label[:source_len] = IGNORE_INDEX
-    return dict(input_ids=input_ids, labels=labels)
-
-
-@dataclass
-class DataCollatorForSupervisedDataset(object):
-    """Collate examples for supervised fine-tuning."""
-
-    tokenizer: transformers.PreTrainedTokenizer
-
-    def __call__(self, instances: Sequence[Dict]) -> Dict[str, torch.Tensor]:
-        
-        batch_input_ids, batch_attn_mask, batch_label = [], [], []
-        
-        for ins in instances:
-            batch_input_ids.append(ins["input_ids"])
-            batch_attn_mask.append(ins["attention_mask"])
-            batch_label.append(ins["labels"])
-            
-        batch_input_ids = torch.stack(batch_input_ids, dim=0)
-        batch_attn_mask = torch.stack(batch_attn_mask, dim=0)
-        batch_label = torch.stack(batch_label, dim=0)
-        
+        seq_input_ids = seq_inputs.input_ids[0]
+        seq_attention_mask = seq_inputs.attention_mask[0]
         return {
-            "batch_input_ids": batch_input_ids,
-            "batch_attn_mask": batch_attn_mask,
-            "batch_labels": batch_label,
+            "input_ids": seq_input_ids,
+            "attention_mask": seq_attention_mask,
         }
         
-@dataclass
-class DataCollatorForCM3(object):
-    """Collate examples for CM3 training objective."""
-
-    tokenizer: transformers.PreTrainedTokenizer
-
-    def __call__(self, instances: Sequence[Dict]) -> Dict[str, torch.Tensor]:
-        
-        batch_input_ids, batch_attn_mask, batch_label = [], [], []
-        
-        for ins in instances:
-            batch_input_ids.append(ins["input_ids"])
-            batch_attn_mask.append(ins["attention_mask"])
-            batch_label.append(ins["labels"])
-            
-        batch_input_ids = torch.stack(batch_input_ids, dim=0)
-        batch_attn_mask = torch.stack(batch_attn_mask, dim=0)
-        batch_label = torch.stack(batch_label, dim=0)
-        
-        return {
-            "batch_input_ids": batch_input_ids,
-            "batch_attn_mask": batch_attn_mask,
-            "batch_labels": batch_label,
-        }
-
-class CustomTrainier(Trainer):
-    def __init__(self, model, args, train_dataset, eval_dataset, tokenizer, **kwargs):
-        super().__init__(
-            model=model, 
-            args=args, 
-            train_dataset=train_dataset, 
-            eval_dataset=eval_dataset, 
-            tokenizer=tokenizer,
-            **kwargs,
-        )
-        
-    def compute_loss(self, model, inputs, return_outputs=False):
-        input_ids = inputs.get("batch_input_ids")
-        batch_attention_mask = inputs.get("batch_attention_mask")
-        batch_labels = inputs.get("batch_labels")
-        
-        outputs = model(
-            input_ids=input_ids,
-            attention_mask=batch_attention_mask,
-            labels=batch_labels,
-        )
-        
-        loss = outputs.loss
-
-        return (loss, outputs) if return_outputs else loss 
-
-              
 def train():
     parser = transformers.HfArgumentParser((ModelArguments, DataArguments, TrainingArguments))
     model_args, data_args, training_args = parser.parse_args_into_dataclasses()
@@ -196,55 +61,69 @@ def train():
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
     )
-    model.config.pad_token_id = 0
+    model.config.pad_token_id = model.config.eos_token_id
 
     tokenizer = transformers.AutoTokenizer.from_pretrained(
         model_args.model_name_or_path,
         cache_dir=training_args.cache_dir,
-        model_max_length=training_args.model_max_length,
         padding_side="right",
         use_fast=True,
     )
-    if tokenizer.pad_token is None:
-        smart_tokenizer_and_embedding_resize(
-            special_tokens_dict=dict(pad_token=DEFAULT_PAD_TOKEN),
-            tokenizer=tokenizer,
-            model=model,
-        )
+
+    special_tokens = ["<face>","</face>","<loop>","</loop>",'type="outer"','type="inner"','<Line>','<Arc>','<Cricle>','<height>']
+    for i in range(30):
+        special_tokens.append(f"<node{i}>")
+    for i in range(201):
+        special_tokens.append(f"{i}")
+        special_tokens.append(f"-{i}")
+    tokenizer.add_tokens(special_tokens,special_tokens=True)
+    model.resize_token_embeddings(len(tokenizer))
     tokenizer.pad_token_id = tokenizer.unk_token_id
-    if "llama" in model_args.model_name_or_path:
-        tokenizer.add_special_tokens(
-            {
-                "eos_token": DEFAULT_EOS_TOKEN,
-                "bos_token": DEFAULT_BOS_TOKEN,
-                "unk_token": DEFAULT_UNK_TOKEN,
-            }
-        )
 
-    train_file = os.path.join(data_args.data_path, "offline_750_train_v2.jsonl")
-    val_file = os.path.join(data_args.data_path, "offline_750_valid_v2.jsonl")
+    data = load_text(data_args.data_path)
+    data = [{'text':x.replace('\\n','\n')} for x in data]
+    # for i in range(5):
+    #     x = data[i]['text']
+    #     print(tokenizer.tokenize(x))  
+    #     print(len(tokenizer.tokenize(x)))
+    #     print("*"*50)
     
-    train_dataset = OfflineDataset(training_args, train_file, tokenizer)
-    val_dataset = OfflineDataset(training_args, val_file, tokenizer)
+    dataset = CADDataset(data, tokenizer)
 
-    if training_args.local_rank == 0:
-        print(len(train_dataset))
-        for index in random.sample(range(len(train_dataset)), 3):
-            print(f"Sample {index} of the training set: {train_dataset[index]}.")
+    # def tokenize_function(examples):
+    #     print("examples")
+    #     print(len(examples["text"]))
+    #     print(examples["text"][0])
+    #     tokenized_inputs = tokenizer(examples["text"],             padding="max_length", 
+    #         truncation=True, 
+    #         max_length=self.max_seq_len,
+    #         return_tensors="pt",
+    #     max_length=512, truncation=True, padding="longest")
+    #     # print(tokenized_inputs)
+    #     # print(tokenized_inputs["input_ids"])
+    #     # tokenized_inputs["labels"] = tokenized_inputs["input_ids"].clone()
+    #     # print(tokenized_inputs["labels"])
+    #     return tokenized_inputs
     
-    data_collator = DataCollatorForSupervisedDataset(tokenizer=tokenizer)
-    data_module = dict(train_dataset=train_dataset, eval_dataset=val_dataset, data_collator=data_collator)
+    # dataset = Dataset.from_dict({'text': [item['text'] for item in dataset]})
+    # tokenized_dataset = dataset.map(tokenize_function, batched=True)
+    data_collator = DataCollatorForLanguageModeling(
+        tokenizer=tokenizer, mlm=False  # For standard language modeling; mlm=True is for masked language modeling (e.g., BERT)
+    )
 
-    #Tell Trainer not to attempt DataParallel
+    trainer = Trainer(
+        model=model,
+        args=training_args,
+        train_dataset=dataset,
+        data_collator=data_collator
+    )
+
     model.is_parallelizable = True
     model.model_parallel = True
-
-    trainer = CustomTrainier(model=model, tokenizer=tokenizer, args=training_args, **data_module)
-    model.config.use_cache = False
-
     trainer.train()
-    trainer.save_state()
-    safe_save_model_for_hf_trainer(trainer=trainer, output_dir=training_args.output_dir)
+    trainer.save_model(training_args.output_dir)
+    tokenizer.save_pretrained(training_args.output_dir)
+    model.config.save_pretrained(training_args.output_dir)
 
 
 if __name__ == "__main__":
