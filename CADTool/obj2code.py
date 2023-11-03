@@ -98,7 +98,7 @@ def obj2json(obj_data):
             if axis == 'origin':
                 x, y, z = map(float, tokens[1:])
             else:
-                x, y, z = map(int, tokens[1:])
+                x, y, z = map(float, tokens[1:])
             data["transformations"][axis] = {"x": x, "y": y, "z": z}
 
     if current_face:
@@ -257,9 +257,12 @@ def debug(path):
     assert json_data_ == formatted_json_data
 
 
-def preprocess():
-    json_files = find_file_with_pattern('/f_ndata/zekai/data/cad_json/0001', '.json')
-    print(len(json_files))
+def obj2code(obj_data):
+    json_data = obj2json(obj_data)
+    formatted_json_data = format_json(json_data)
+    code_data = json2code(formatted_json_data)
+    return code_data
+
 
 
 if __name__ == '__main__':

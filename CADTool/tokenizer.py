@@ -27,11 +27,12 @@ code_str = """# define nodes
 """
 
 def tokenize(str):
-    x = tokenizer.tokenize(code_str)
-    print(f'Token Length = {len(x)}')
-    print(x)
+    x = tokenizer.tokenize(str)
+    return len(x)
+    # print(f'Token Length = {len(x)}')
+    # print(x)
 
-tokenize(code_str)
+# tokenize(code_str)
 
 
 
