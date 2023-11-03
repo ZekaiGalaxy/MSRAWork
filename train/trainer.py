@@ -41,3 +41,47 @@ trainer = Trainer(
 
 # Step 6: Fine-tune the Model
 trainer.train()
+
+
+
+from transformers import LlamaForCausalLM, LlamaTokenizer, Trainer, TrainingArguments
+import torch
+from datasets import load_dataset
+
+# Step 1: Loading the Model
+model_name = "/share2/wangyq/resources/models/Llama-2-7b-hf"  # Replace with the actual model name if different
+tokenizer = LlamaTokenizer.from_pretrained(model_name)
+tokenizer.pad_token = tokenizer.eos_token
+model = LlamaForCausalLM.from_pretrained(model_name)
+
+# Step 2: Data Preparation
+dataset = load_dataset('text', data_files='svg_data.txt')
+def tokenize_function(examples):
+    tokenized_inputs = tokenizer(examples["text"], padding=True, truncation=True)
+    # Shift the token IDs to the right to create labels
+    tokenized_inputs["labels"] = tokenized_inputs["input_ids"].copy()
+    return tokenized_inputs
+tokenized_datasets = dataset.map(tokenize_function, batched=True)
+
+# # Step 3: Training
+training_args = TrainingArguments(
+    output_dir="./results",
+    num_train_epochs=3,              # Set number of epochs according to your needs
+    per_device_train_batch_size=1,   # Adjust batch size according to your GPU
+    save_steps=10_000,
+    save_total_limit=2,
+)
+
+trainer = Trainer(
+    model=model,
+    args=training_args,
+    train_dataset=tokenized_datasets["train"],
+)
+
+trainer.train()
+
+# # Step 4: Text Generation
+prompt = "Your text prompt here"  # Replace with your starting text
+inputs = tokenizer(prompt, return_tensors="pt")
+outputs = model.generate(inputs.input_ids, max_length=50, temperature=0.5)
+print(tokenizer.decode(outputs[0]))
