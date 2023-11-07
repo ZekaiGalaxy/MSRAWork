@@ -61,6 +61,8 @@ def main():
         files += list(input_path.glob("*.st*p"))
     
     files = files # debug only (* remove *)
+    for x in files:
+        print(x)
 
     output_path = pathlib.Path(args.output_dir)
     if not output_path.exists():

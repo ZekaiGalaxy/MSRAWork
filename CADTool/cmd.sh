@@ -20,5 +20,5 @@ python normalize.py --data_folder /f_ndata/zekai/data/cad_obj --out_folder /f_nd
 
 # sometimes rounding can lead to same point location!
 # We should discard these data!
-python obj2step.py --data_folder test/obj
+python obj2step.py --data_folder test
 python code2img.py
