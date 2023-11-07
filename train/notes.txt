@@ -1,1 +1,4 @@
 deepspeed config
+
+ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null aiscuser.node-0@aisc-prod-southcentralus-cpml-lnx-13.federation.singularity.azure.com
+sv=1.0&st=2023-11-06T08%3a24%3a36Z&se=2023-12-06T08%3a24%3a36Z&sr=f8b75d07-4eec-440d-9e53-a370112b1cfc&spr=ssh&sig=OzTZyzo3aTJJExZS3O%2bZgMtbTGvyyywXNcrutIEB6jU%3d

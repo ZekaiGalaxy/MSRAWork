@@ -36,12 +36,18 @@ NUM_TRHEADS = 36
 def find_files(folder, extension):
     return sorted([Path(os.path.join(folder, f)) for f in os.listdir(folder) if f.endswith(extension)])
 
-
+def try_run_parallel(project_folder):
+    try:
+        run_parallel(project_folder)
+    except:
+        pass
 def run_parallel(project_folder):
     output_folder = project_folder
     print(output_folder)
 
     param_objs = find_files(project_folder, '.obj')
+    if len(param_objs)==0:
+        return
 
     cur_solid = None
     extrude_idx = 0
@@ -77,12 +83,20 @@ def run_parallel(project_folder):
  
     # try:
     #   with timeout(30):
-    stl_name = Path(output_folder).stem + '_'+ str(extrude_idx).zfill(3) + "_final.stl"
-    output_path =  os.path.join(output_folder, stl_name)
-    write_stl_file(cur_solid, output_path, linear_deflection=0.001, angular_deflection=0.5)
+    
+    # stl_name = Path(output_folder).stem + '_'+ str(extrude_idx).zfill(3) + "_final.stl"
+    # output_path =  os.path.join(output_folder, stl_name)
+    # with open(output_path, 'w+') as file:
+    #     file.write('')
+    # print("output_path",output_path)
+    # print(os.path.isfile(output_path))
+    # write_stl_file(cur_solid, output_path, linear_deflection=0.001, angular_deflection=0.5)
 
     step_name = Path(output_folder).stem + '_'+ str(extrude_idx).zfill(3) + "_final.step"
     output_path =  os.path.join(output_folder, step_name)
+    with open(output_path, 'w+') as file:
+        file.write('')
+    print("output_path",output_path)
     write_step_file(cur_solid, output_path)
 
     # except Exception as ex:
@@ -100,6 +114,6 @@ if __name__ == "__main__":
     solids = []
     cad_folders = sorted(glob(args.data_folder+'/*/'))
 
-    convert_iter = Pool(NUM_TRHEADS).imap(run_parallel, cad_folders) 
+    convert_iter = Pool(NUM_TRHEADS).imap(try_run_parallel, cad_folders) 
     for solid in tqdm(convert_iter, total=len(cad_folders)):
         pass

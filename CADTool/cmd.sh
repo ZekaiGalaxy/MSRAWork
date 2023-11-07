@@ -14,7 +14,11 @@ python convert.py --data_folder /f_ndata/zekai/data/cad_json --output_folder /f_
 # normalize CAD and update the obj file
 python normalize.py --data_folder /f_ndata/zekai/data/cad_obj --out_folder /f_ndata/zekai/data/cad_norm
 
+/f_ndata/zekai/data/cad_norm
+
 
 
 # sometimes rounding can lead to same point location!
 # We should discard these data!
+python obj2step.py --data_folder test/obj
+python code2img.py

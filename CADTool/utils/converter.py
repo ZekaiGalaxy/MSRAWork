@@ -444,7 +444,8 @@ class DeepCADReconverter:
         start = create_point(line["start_point"], transform)
         end = create_point(line["end_point"], transform)
         if start.Distance(end)==0:
-            raise Exception("start/end point same location")
+            # raise Exception("start/end point same location")
+            return -1, ""
         
         topo_edge = BRepBuilderAPI_MakeEdge(start, end)
        
@@ -603,7 +604,7 @@ class OBJReconverter:
                         if min(diff2) ==0 or min(diff1) == 0:
                             continue # edge connected 
 
-                        assert min(diff1) < 1e-3 or min(diff2) < 1e-3 # difference should be small
+                        # assert min(diff1) < 1e-3 or min(diff2) < 1e-3 # difference should be small
 
                         if min(diff1) > min(diff2):
                             min_idx = np.argmin(diff2)
@@ -642,7 +643,7 @@ class OBJReconverter:
                             diff = np.sum(np.abs(loop[-1].start - start_curve), 1)   
                         else: 
                             diff = np.sum(np.abs(loop[-1].end - start_curve), 1)   
-                        assert min(diff) < 1e-3 
+                        # assert min(diff) < 1e-3 
 
                         min_idx = np.argmin(diff)
                         if min_idx == 0:
@@ -792,8 +793,8 @@ class OBJReconverter:
             fixer.FixOrientation()  
     
             analyzer = BRepCheck_Analyzer(fixer.Face())
-            if not analyzer.IsValid():
-                raise Exception("face check failed")
+            # if not analyzer.IsValid():
+            #     raise Exception("face check failed")
 
             curve_count += num_curve
 
@@ -835,6 +836,8 @@ class OBJReconverter:
         # Loop through all the curves in one loop
         for profile_curve in profile_loop:
             curve_edge, curve_string = self.parse_curve(profile_curve, transform)
+            if curve_edge == -1: # omitted 
+                continue 
             topo_wire.Add(curve_edge)
             if not topo_wire.IsDone():
                 raise Exception("wire builder not done")
@@ -866,7 +869,8 @@ class OBJReconverter:
         start = create_point(line["start_point"], transform)
         end = create_point(line["end_point"], transform)
         if start.Distance(end)==0:
-            raise Exception("start/end point same location")
+            # raise Exception("start/end point same location")
+            return -1, ""
         topo_edge = BRepBuilderAPI_MakeEdge(start, end)
 
         # Save pre-transform 

@@ -10,7 +10,8 @@ import transformers
 from transformers import Trainer, DataCollatorForLanguageModeling
 from datasets import Dataset
 import os
-os.environ["TOKENIZERS_PARALLELISM"] = "false"
+import deepspeed
+deepspeed.ops.op_builder.CPUAdamBuilder().load()
 
 @dataclass
 class ModelArguments:
@@ -38,7 +39,7 @@ class CADDataset(Dataset):
         return len(self.dataset)
     
     def __getitem__(self, idx):
-        cad_code = self.dataset[idx]['text']
+        cad_code = [self.dataset[x] for x in idx]
         seq_inputs = self.tokenizer(
             cad_code, 
             padding="max_length", 
@@ -46,11 +47,13 @@ class CADDataset(Dataset):
             max_length=512,
             return_tensors="pt",
         )
-        seq_input_ids = seq_inputs.input_ids[0]
-        seq_attention_mask = seq_inputs.attention_mask[0]
+        seq_input_ids = seq_inputs.input_ids
+        seq_attention_mask = seq_inputs.attention_mask
+        labels = seq_input_ids.clone()
         return {
             "input_ids": seq_input_ids,
             "attention_mask": seq_attention_mask,
+            "labels": labels
         }
         
 def train():
@@ -76,12 +79,13 @@ def train():
     for i in range(201):
         special_tokens.append(f"{i}")
         special_tokens.append(f"-{i}")
+
     tokenizer.add_tokens(special_tokens,special_tokens=True)
     model.resize_token_embeddings(len(tokenizer))
     tokenizer.pad_token_id = tokenizer.unk_token_id
 
     data = load_text(data_args.data_path)
-    data = [{'text':x.replace('\\n','\n')} for x in data]
+    data = [x.replace('\\n','\n') for x in data]
     # for i in range(5):
     #     x = data[i]['text']
     #     print(tokenizer.tokenize(x))  
@@ -107,17 +111,16 @@ def train():
     
     # dataset = Dataset.from_dict({'text': [item['text'] for item in dataset]})
     # tokenized_dataset = dataset.map(tokenize_function, batched=True)
-    data_collator = DataCollatorForLanguageModeling(
-        tokenizer=tokenizer, mlm=False  # For standard language modeling; mlm=True is for masked language modeling (e.g., BERT)
-    )
+    # data_collator = DataCollatorForLanguageModeling(
+    #     tokenizer=tokenizer, mlm=False  # For standard language modeling; mlm=True is for masked language modeling (e.g., BERT)
+    # )
 
     trainer = Trainer(
         model=model,
         args=training_args,
         train_dataset=dataset,
-        data_collator=data_collator
     )
-
+    model.config.use_cache = False
     model.is_parallelizable = True
     model.model_parallel = True
     trainer.train()

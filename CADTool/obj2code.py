@@ -266,7 +266,26 @@ def obj2code(obj_data):
 
 
 if __name__ == '__main__':
-    preprocess()
+    txt = """# height
+<height> 2
+
+# define nodes
+<node0> (0,0)
+<node1> (196,0)
+<node2> (196,98)
+<node3> (0,105)
+
+# draw face
+<face>
+    <loop type="outer">
+        <Line> <node0> <node1>
+        <Line> <node1> <node2>
+        <Line> <node3> <node2>
+        <Line> <node0> <node3>
+    </loop>
+</face>
+"""
+    code_data = txt
     # folder_path = 'example_obj'
     # obj_files = find_file_with_pattern(folder_path,'.obj')
 
@@ -288,14 +307,15 @@ if __name__ == '__main__':
     #     checkp('CODE data',code_data)
     #     save_code(code_data, path.replace('example_obj','example_code').replace('param.obj','format.code'))
 
-    #     # code -> json
-    #     json_data_ = code2json(code_data)
-    #     checkp('RECOVER JSON data',json_data_)
+    # code -> json
+    json_data = code2json(code_data)
+    print(json_data)
 
-    #     # json -> obj
-    #     obj_data_ = json2obj(formatted_json_data)
-    #     save_obj(obj_data_, path.replace('example_obj','formatted_obj').replace('param','format'))
-        # checkp('RECOVER OBJ data',obj_data_)
+    # json -> obj
+    obj_data = json2obj(json_data)
+    # save_obj(obj_data_, path.replace('example_obj','formatted_obj').replace('param','format'))
+    # checkp('RECOVER OBJ data',obj_data_)
+    save_obj(obj_data,"/workspace/MSRAWork/CADTool/1.obj")
 
     # debug('example_obj/00007/00007_000_param.obj')
 
