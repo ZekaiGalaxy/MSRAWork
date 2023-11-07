@@ -1,13 +1,11 @@
 # height
-<height>  65 
+<height>  200 
 
 # define nodes
-<node0>  (196 ,-196 )
-<node1>  (-196 ,-196 )
+<node0>  (0 ,0 )
+<node1>  (-196 ,0 )
 <node2>  (-196 ,196 )
-<node3>  (196 ,196 )
-<node4>  (0 ,0 )
-<node5>  (26 ,0 )
+<node3>  (0 ,196 )
 
 # draw face
 <face> 
@@ -16,8 +14,5 @@
         <Line>  <node1>  <node2> 
         <Line>  <node3>  <node2> 
         <Line>  <node0>  <node3> 
-    </loop> 
-    <loop type="inner" >
-        <Circle> <node4>  <node5> 
     </loop> 
 </face>

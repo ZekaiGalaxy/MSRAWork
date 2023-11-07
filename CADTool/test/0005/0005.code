@@ -1,23 +1,11 @@
 # height
-<height>  200 
+<height>  133 
 
 # define nodes
-<node0>  (0 ,0 )
-<node1>  (0 ,98 )
-<node2>  (12 ,98 )
-<node3>  (50 ,0 )
-<node4>  (196 ,0 )
-<node5>  (196 ,39 )
-<node6>  (147 ,-4 )
-<node7>  (196 ,0 )
-<node8>  (196 ,0 )
-<node9>  (163 ,0 )
-<node10>  (196 ,0 )
-<node11>  (196 ,0 )
-<node12>  (196 ,0 )
-<node13>  (196 ,0 )
-<node14>  (196 ,0 )
-<node15>  (196 ,0 )
+<node0>  (-196 ,196 )
+<node1>  (-196 ,196 )
+<node2>  (-196 ,-196 )
+<node3>  (196 ,-196 )
 
 # draw face
 <face> 
@@ -25,57 +13,6 @@
         <Line>  <node0>  <node1> 
         <Line>  <node1>  <node2> 
         <Line>  <node3>  <node2> 
-        <Line>  <node4>  <node3> 
-        <Line>  <node5>  <node4> 
-        <Line>  <node0>  <node5> 
+        <Line>  <node0>  <node3> 
     </loop> 
-</face> 
-<face> 
-    <loop type="outer" >
-        <Line>  <node6>  <node7> 
-        <Line>  <node7>  <node8> 
-        <Line>  <node9>  <node8> 
-        <Line>  <node10>  <node9> 
-        <Line>  <node11>  <node10> 
-        <Line>  <node6>  <node11> 
-    </loop> 
-</face> 
-<face> 
-    <loop type="outer" >
-        <Line>  <node12>  <node13> 
-        <Line>  <node13>  <node12> 
-        <Line>  <node13>  <node12> 
-        <Line>  <node11>  <node14> 
-        <Line>  <node10>  <node11> 
-        <Line>  <node2>  <node11> 
-    </loop> 
-</face> 
-<face> 
-    <loop type="outer" >
-        <Line>  <node4>  <node10> 
-        <Line>  <node10>  <node11> 
-        <Line>  <node3>  <node11> 
-        <Line>  <node4>  <node3> 
-    </loop> 
-</face> 
-<face> 
-    <loop type="outer" >
-        <Line>  <node0>  <node4> 
-        <Line>  <node4>  <node3> 
-        <Line>  <node2>  <node3> 
-        <Line>  <node0>  <node2> 
-    </loop> 
-</face> 
-<face> 
-    <loop type="outer" >
-        <Line>  <node2>  <node15> 
-        <Line>  <node10>  <node11> 
-        <Line>  <node10>  <node11> 
-        <Line>  <node2>  <node11> 
-    </loop> 
-</face> 
-<face> 
-    <loop type="outer" >
-        <Line>  <node15>  <node16> 
-        <Line>  <node10>  
-</face>      
+</face>
