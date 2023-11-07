@@ -898,6 +898,13 @@ solid
  facet normal  0.000000e+00  0.000000e+00 -1.000000e+00
    outer loop
      vertex  1.488121e-01  1.434854e-01  0.000000e+00
+     vertex  1.683322e-01  1.205560e-01  0.000000e+00
+     vertex  2.130707e-01  1.005113e-02  0.000000e+00
+   endloop
+ endfacet
+ facet normal  0.000000e+00  0.000000e+00 -1.000000e+00
+   outer loop
+     vertex  1.488121e-01  1.434854e-01  0.000000e+00
      vertex -2.430281e-01 -9.405043e-02  0.000000e+00
      vertex -2.506664e-01 -6.492228e-02  0.000000e+00
    endloop
@@ -1005,13 +1012,6 @@ solid
      vertex  1.488121e-01  1.434854e-01  0.000000e+00
      vertex  1.265201e-01 -2.037304e-01  0.000000e+00
      vertex  1.018223e-01 -2.209585e-01  0.000000e+00
-   endloop
- endfacet
- facet normal  0.000000e+00  0.000000e+00 -1.000000e+00
-   outer loop
-     vertex  1.488121e-01  1.434854e-01  0.000000e+00
-     vertex  1.683322e-01  1.205560e-01  0.000000e+00
-     vertex  2.130707e-01  1.005113e-02  0.000000e+00
    endloop
  endfacet
  facet normal  0.000000e+00  0.000000e+00  1.000000e+00
@@ -1227,6 +1227,13 @@ solid
  facet normal  0.000000e+00  0.000000e+00  1.000000e+00
    outer loop
      vertex  1.488121e-01  1.434854e-01  9.850000e-01
+     vertex  2.130707e-01  1.005113e-02  9.850000e-01
+     vertex  1.683322e-01  1.205560e-01  9.850000e-01
+   endloop
+ endfacet
+ facet normal  0.000000e+00  0.000000e+00  1.000000e+00
+   outer loop
+     vertex  1.488121e-01  1.434854e-01  9.850000e-01
      vertex -2.506664e-01 -6.492228e-02  9.850000e-01
      vertex -2.430281e-01 -9.405043e-02  9.850000e-01
    endloop
@@ -1334,13 +1341,6 @@ solid
      vertex  1.488121e-01  1.434854e-01  9.850000e-01
      vertex  1.018223e-01 -2.209585e-01  9.850000e-01
      vertex  1.265201e-01 -2.037304e-01  9.850000e-01
-   endloop
- endfacet
- facet normal  0.000000e+00  0.000000e+00  1.000000e+00
-   outer loop
-     vertex  1.488121e-01  1.434854e-01  9.850000e-01
-     vertex  2.130707e-01  1.005113e-02  9.850000e-01
-     vertex  1.683322e-01  1.205560e-01  9.850000e-01
    endloop
  endfacet
 endsolid

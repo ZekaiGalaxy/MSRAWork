@@ -60,6 +60,7 @@ def code2json_handle(code):
             outer_loops.append(loop_data)
 
         inner_loops = []
+        loop_pattern = r"<loop type=\"inner\">(.*?)</loop>|<loop type=\"inner\" >(.*?)</loop>"
         loops = re.findall(loop_pattern, face, re.DOTALL)
         for loop in loops:
             loop = loop[-1]

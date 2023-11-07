@@ -86,17 +86,17 @@ def run_parallel(project_folder):
     
     stl_name = Path(output_folder).stem + '_'+ str(extrude_idx).zfill(3) + "_final.stl"
     output_path =  os.path.join(output_folder, stl_name)
-    with open(output_path, 'w+') as file:
-        file.write('')
-    print("output_path",output_path)
-    print(os.path.isfile(output_path))
+    # with open(output_path, 'w+') as file:
+    #     file.write('')
+    # print("output_path",output_path)
+    # print(os.path.isfile(output_path))
     write_stl_file(cur_solid, output_path, linear_deflection=0.001, angular_deflection=0.5)
 
     step_name = Path(output_folder).stem + '_'+ str(extrude_idx).zfill(3) + "_final.step"
     output_path =  os.path.join(output_folder, step_name)
-    with open(output_path, 'w+') as file:
-        file.write('')
-    print("output_path",output_path)
+    # with open(output_path, 'w+') as file:
+    #     file.write('')
+    # print("output_path",output_path)
     write_step_file(cur_solid, output_path)
 
     # except Exception as ex:
