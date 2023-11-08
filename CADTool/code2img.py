@@ -3,7 +3,7 @@ import os
 import re
 import obj2code
 
-input_folder = 'test'
+input_folder = 'test2'
 
 def code2json_handle(code):
     height = int(code.split("\n")[1][len("<height> "):])

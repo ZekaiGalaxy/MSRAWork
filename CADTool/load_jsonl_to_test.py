@@ -8,8 +8,10 @@ def read_jsonl(path):
             data.append(json.loads(line.strip()))
     return data
 
-cad_data = read_jsonl('/workspace/SUWA/zekai/generated_res.jsonl')[0]
-base_path = '/workspace/MSRAWork/CADTool/test'
+# /workspace/SUWA/zekai/_0_0.7.jsonl,/workspace/SUWA/zekai/checkpoint-200_0_0.7.jsonl,/workspace/SUWA/zekai/checkpoint-300_0_0.7.jsonl
+cad_data = read_jsonl('/workspace/SUWA/zekai/checkpoint-300_0_0.7.jsonl')[0]
+print(len(cad_data['case']))
+base_path = '/workspace/MSRAWork/CADTool/test2'
 for i in range(128):
     cad_code = cad_data['case'][i].replace('<unk>','').replace('<s>','').strip()
 
