@@ -9,9 +9,9 @@ def read_jsonl(path):
     return data
 
 # /workspace/SUWA/zekai/_0_0.7.jsonl,/workspace/SUWA/zekai/checkpoint-200_0_0.7.jsonl,/workspace/SUWA/zekai/checkpoint-300_0_0.7.jsonl
-cad_data = read_jsonl('/workspace/SUWA/zekai/checkpoint-300_0_0.7.jsonl')[0]
+cad_data = read_jsonl('/workspace/SUWA/zekai/checkpoint-400_0_0.7.jsonl')[0]
 print(len(cad_data['case']))
-base_path = '/workspace/MSRAWork/CADTool/test2'
+base_path = '/workspace/MSRAWork/CADTool/test3'
 for i in range(128):
     cad_code = cad_data['case'][i].replace('<unk>','').replace('<s>','').strip()
 
