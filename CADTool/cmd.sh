@@ -31,3 +31,5 @@ for file in /f_ndata/zekai/inference_jsonl/*.jsonl; do
   file=$(basename "$file")
   python render_pipeline.py --input_path "$file"
 done
+
+hi
