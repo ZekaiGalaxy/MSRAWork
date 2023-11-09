@@ -23,3 +23,11 @@ python normalize.py --data_folder /f_ndata/zekai/data/cad_obj --out_folder /f_nd
 python load_jsonl_to_test.py
 python code2img.py
 python obj2step.py --data_folder test4
+
+
+python render_pipeline.py --input_path v1_ckpt200_0.7_0.jsonl
+
+for file in /f_ndata/zekai/inference_jsonl/*.jsonl; do
+  file=$(basename "$file")
+  python render_pipeline.py --input_path "$file"
+done

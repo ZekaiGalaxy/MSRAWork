@@ -1,0 +1,30 @@
+# height
+<height>  200 
+
+# define nodes
+<node0>  (2 ,2 )
+<node1>  (-2 ,2 )
+<node2>  (-2 ,-2 )
+<node3>  (2 ,-2 )
+<node4>  (-2 ,-2 )
+<node5>  (-2 ,-2 )
+<node6>  (-2 ,-2 )
+<node7>  (-2 ,-2 )
+
+# draw face
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node1> 
+        <Line>  <node1>  <node2> 
+        <Line>  <node3>  <node2> 
+        <Line>  <node0>  <node3> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node4>  <node5> 
+        <Line>  <node5>  <node6> 
+        <Line>  <node7>  <node6> 
+        <Line>  <node4>  <node7> 
+    </loop> 
+</face>

@@ -1,0 +1,38 @@
+# height
+<height>  200 
+  (0 ,0 )
+71 
+    <loop type="outer" >
+        <Line>  <node0>  <node1>  <node1> 
+        <Line>  <node1>  <node2>  <node0>  <node1> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node2> 
+        <Arc>  <node0>  <node4>  <node2>  <node2>  <node1> 
+        <Line>  <node0>  <node4> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node5>  <node6> 
+        <Line>  <node5>  <node6>  <node2> 
+        <Line>  <node6>  <node2>  <node5> 
+        <Line>  <node4>  <node5> 
+        <Line>  <node6>  <node1> 
+        <Line>  <node1>  <node6> 
+        <Line>  <node7>  <node0> 
+        <Line>  <node0>  <node6> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node7>  <node8> 
+        <Line>  <node8>  <node9>  <node2> 
+        <Line>  <node9>  <node7> 
+        <Line>  <node9>  <node2> 
+        <Line>  <node0>  <node7> 
+    </loop> 
+</face>

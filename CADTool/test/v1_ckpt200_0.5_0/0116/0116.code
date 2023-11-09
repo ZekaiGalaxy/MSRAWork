@@ -1,0 +1,18 @@
+# height
+<height>  131 
+
+# define nodes
+<node0>  (0 ,0 )
+<node1>  (0 ,131 )
+<node2>  (131 ,131 )
+<node3>  (131 ,0 )
+
+# draw face
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node1> 
+        <Line>  <node1>  <node2> 
+        <Line>  <node3>  <node2> 
+        <Line>  <node0>  <node3> 
+    </loop> 
+</face>

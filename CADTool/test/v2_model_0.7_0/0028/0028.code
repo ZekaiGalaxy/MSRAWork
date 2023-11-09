@@ -1,0 +1,39 @@
+# height
+<height>  8 
+ite 
+    <loop type="outer" type="outer" >
+        <Line>  <node0>  <node1>  <node1> 
+        <Line>  <node2>  <node1>  <node2> 
+        <Line>  <node3>  <node2>  <node2> 
+        <Line>  <node3>  <node4> 
+        <Arc>  <node3>  <node5>  <node6>  <node5>  <node2> 
+        <Line>  <node0>  <node4> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node4>  <node7> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node4>  <node8> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node9>  <node5> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node9>  <node5>  <node4> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node6>  <node5> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node6>  <node8> 
+    </loop> 
+</face>

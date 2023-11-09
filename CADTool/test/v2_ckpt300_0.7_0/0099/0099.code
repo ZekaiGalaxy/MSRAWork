@@ -1,0 +1,50 @@
+# height
+<height>  12 
+  (0 ,0 )
+<node1>  (0 ,0 )
+<node2>  (0 ,0 )
+<node3>  (0 ,0 )
+<node4>  (0 ,0 )
+
+> 
+
+> 
+
+> 
+
+> 
+
+> 
+
+bal 
+    <loop type="outer" >
+        <Line>  <node0>  <node1>  <node1>  <node1>  <node1> 
+        <Line>  <node1>  <node1>  <node1>  <node2> 
+        <Line>  <node3>  <node3>  <node2>  <node3> 
+        <Line>  <node0>  <node4> 
+        <Line>  <node0>  <node4> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node5> 
+        <Arc>  <node2>  <node6>  <node5>  <node0>  <node2> 
+        <Line>  <node4>  <node6> 
+        <Line>  <node6>  <node2> 
+        <Line>  <node3>  <node7> 
+        <Line>  <node5>  <node8> 
+        <Line>  <node3>  <node7> 
+        <Arc>  <node8>  <node8>  <node9> 
+        <Arc>  <node0>  <node6> 
+        <Line>  <node0>  <node8> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node5>  <node10> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node8>  <node9> 
+    </loop> 
+</face>

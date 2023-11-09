@@ -1,0 +1,36 @@
+# height
+<height>  6 
+
+# define nodes
+<node0>  (0 ,0 )
+<node1>  (0 ,0 )
+<node2>  (98 ,0 )
+<node3>  (-5 ,0 )
+<node4>  (0 ,6 )
+<node5>  (0 ,6 )
+<node6>  (0 ,6 )
+<node7>  (0 ,6 )
+<node8>  (0 ,6 )
+<node9>  (0 ,6 )
+<node10>  (0 ,6 )
+<node11>  (0 ,6 )
+<node12>  (0 ,6 )
+<node13>  (0 ,6 )
+<node14>  (0 ,6 )
+<node15>  (0 ,0 )
+<node16>  (6 ,0 )
+<node17>  (6 ,0 )
+
+# draw face
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node1> 
+        <Arc>  <node1>  <node4>  <node3>  <node2> 
+        <Line>  <node2>  <node2> 
+        <Arc>  <node6>  <node8>  <node7>  <node6> 
+        <Line>  <node9>  <node6> 
+        <Arc>  <node9>  <node12>  <node11>  <node10> 
+        <Line>  <node13>  <node10> 
+        <Arc>  <node0>  <node15>  <node14>  <node13> 
+    </loop> 
+</face>

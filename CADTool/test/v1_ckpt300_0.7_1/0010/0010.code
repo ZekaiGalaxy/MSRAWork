@@ -1,0 +1,34 @@
+﻿// Copyright (c) Microsoft Corporation.  All Rights Reserved. Licensed under the MIT License. See License.txt in the project root for license information.
+define([
+    'exports',
+    '../Core/_Base',
+    '../Core/_BaseUtils',
+    '../Core/_ErrorFromName',
+    '../Core/_Log',
+    '../Core/_Signal',
+    '../Core/_WriteProfilerMark',
+    '../Core/_WinRT',
+    '../Core/_Resources',
+    '../Promise',
+    '../Scheduler'
+], function baseComponentInit(exports, _Base, _BaseUtils, _ErrorFromName, _Log, _Signal, _WriteProfilerMark, _WinRT, _Resources, Promise, Scheduler) {
+    "use strict";
+
+    // Shortcuts
+    var stringFormat = _BaseUtils.stringFormat;
+
+    // Constants
+    var MIN_VERSION = "1.0.0";
+    var SIGNAL_COMPONENT_DEFINITION = "WinJS.UI.define";
+    var SIGNAL_COMPONENT_CONSTRUCTOR = "WinJS.UI.create";
+    var SIGNAL_COMPONENT_DESTROY = "WinJS.UI.dispose";
+    var SIGNAL_COMPONENT_CREATED = _Signal._Constants._created;
+    var SIGNAL_COMPONENT_ATTACHED = _Signal._Constants._attached;
+    var SIGNAL_COMPONENT_DETACHED = _Signal._Constants._detached;
+
+    // Names
+    var errorClassNotRegistered = _ErrorFromName.notRegistered("WinJS.UI.ClassNotRegistered");
+    var errorComponentNotDefined = _ErrorFromName.notDefined("WinJS.UI.ComponentNotDefined");
+    var errorComponentAlreadyDefined = _ErrorFromName.definition("WinJS.UI.ComponentAlreadyDefined");
+    var errorComponentNotDefined = _ErrorFromName.notDefined("WinJS.UI.ComponentNotDefined");
+    var errorComponentNotCreated = _ErrorFromName.notCreated("WinJS.UI.Component

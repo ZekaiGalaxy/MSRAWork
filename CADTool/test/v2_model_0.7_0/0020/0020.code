@@ -1,0 +1,87 @@
+# height
+<height>  78 
+  (0 ,0 )
+<node1>  (-3 ,0 )
+<node2>  (-36 ,0 )
+<node3>  (36 ,41 )
+
+> "<node6> 
+> " 
+> "0 
+
+<node1>  (36 ,60 )
+> " 
+  <node0> 
+> "0 
+
+<node5>  (-36 ,-60 )
+> " 
+  <node0> 
+> "0 
+
+<node3>  (0 ,60 )
+
+<node4>  (36 ,60 )
+
+ el 
+    <loop type="outer" >
+        <Circle> <node0>
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node2>  <node1>  <node1> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node2>  <node2>  <node6> 
+    </loop> 
+</face>  (-36 ,60 )
+</face>  (0 ,-60 )
+
+ el 
+    <loop type="outer" >
+        <Circle> <node3>  <node1> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node2>  <node4> 
+    </loop> 
+</face>  (-36 ,60 )
+
+ el 
+    <loop type="outer" >
+        <Circle> <node4> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node5>  <node6> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node2>  <node1> 
+    </loop> 
+</face>  (0 ,60 )
+
+ el 
+    <loop type="inner" >
+        <Circle> <node5> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node3>  <node6> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node6>  <node7> 
+    </loop> 
+</face>  (0 ,0 )
+
+ el 
+    <loop type="outer" >
+        <Circle> <node7> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node8>  <node6> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node9>  <node6> 
+    </loop> 
+</face>  (0 ,0 )
+
+ el 
+    <loop type="inner" >
+        <Circle> <node7> 
+    </loop>

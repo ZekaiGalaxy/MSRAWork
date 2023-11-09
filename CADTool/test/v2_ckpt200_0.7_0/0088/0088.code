@@ -1,0 +1,59 @@
+# height
+<height>  6 
+
+
+# define nodes
+<node0>  (-196 ,0 )
+<node1>  (0 ,0 )
+<node3>  (0 ,163 )
+<node3>  (-196 ,93 )
+
+# draw face
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node1>  <node1> 
+        <Line>  <node0>  <node2>  <node2> 
+        <Line>  <node3>  <node0>  <node2> 
+        <Line>  <node3>  <node2>  <node0> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node2> 
+        <Line>  <node3>  <node3>  <node4> 
+        <Line>  <node0>  <node3>  <node2> 
+        <Line>  <node4>  <node5> 
+        <Line>  <node0> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node4>  <node5> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node4>  <node6> 
+    </loop> 
+</face> 
+    <loop type="inner" >
+        <Circle> <node4>  <node7> 
+    </loop>  <node1>  <node4> 
+    </loop>  <node0>  <node6> 
+    <Line>  <node0> 
+    <Line> 
+</face> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node7>  <node5> 
+    </loop> 
+</face> 
+    <loop type="inner" >
+        <Circle> <node8>  <node7> 
+    </loop>  <node1>  <node4> 
+    </loop>  <node3>  <node8> 
+    <Line>  <node0> 
+    <Line> 
+</face>

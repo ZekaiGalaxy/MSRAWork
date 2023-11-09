@@ -1,0 +1,86 @@
+# height
+<height>  200 
+  (0 ,0 )
+<node1>  (12 ,0 )
+<node2>  (12 ,0 )
+<node3>  (31 ,0 )
+<node4>  (3 ,0 )
+<node5>  (8 ,0 )
+<node5>  (0 ,8 )
+  (16 ,0 )
+
+> 
+    <loop type="outer" >
+        <Circle> <node0>  <node1>  <node1> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node2>  <node2>  <node3> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node0>  <node4> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node5>  <node2> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node5>  <node4> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node3>  <node4> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node5>  <node6> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node3>  <node5> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node0>  <node4> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node3> 
+    </loop> 
+ p. 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node5>  <node4> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node3>  <node4> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node5>  <node6> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node3>  <node6> 
+    <Line> 
+</face> 
+ j. 
+ Kbuild 
+    <loop type="outer" >
+        <Circle> <node0>  <node4> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node3>  <node4> 
+    <Line> 
+ j. 
+ Kbuild 
+    <loop

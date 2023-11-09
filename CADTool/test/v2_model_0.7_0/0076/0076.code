@@ -1,0 +1,106 @@
+# height
+<height>  10 
+  (0 ,0 )
+<node1>  (0 ,0 )
+<node2>  (0 ,0 )
+<node3>  (0 ,0 )
+<node4>  (0 ,0 )
+
+> 
+
+> 
+
+> 
+
+> 
+
+> 
+
+<node7>  (157 ,0 )
+
+<node5>  (27 ,0 )
+
+<node7>  (27 ,0 )
+
+<node6>  (27 ,0 )
+
+> 
+
+> 
+
+> 
+
+> 
+
+<node7> ,0 )
+
+2 
+    <loop type="outer" >
+        <Circle> <node0>  <node1> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node0>  <node3> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node2>  <node4>  <node1> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node2>  <node5> 
+    </loop> 
+</face> 
+<face> 
+> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node5>    <node0> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node5>    <node3> 
+    </loop> 
+</face> 
+</face> 
+> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node6>  <node4>  <node3> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node6>  <node5> 
+    </loop> 
+</face> 
+</face> 
+> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node7>  <node3> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node7>  <node4>  <node3> 
+    </loop> 
+</face> 
+</face> 
+> 
+<face> 
+
+> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node7>  <node3> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node7>  <node4>  <node3> 
+    </loop> 
+
+这句 
+    <loop type="inner" >
+        <Circle>  def 
+    </loop> 
+    <loop

@@ -4,7 +4,7 @@ import cad_utils
 import argparse
 
 parser = argparse.ArgumentParser(description='Input File.')
-parser.add_argument('input_path', type=str, help='the path to the input file')
+parser.add_argument('--input_path', type=str, help='the path to the input file')
 args = parser.parse_args()
 
 cad_data = cad_utils.load_jsonl(f'/f_ndata/zekai/inference_jsonl/{args.input_path}.jsonl')[0]

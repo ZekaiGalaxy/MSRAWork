@@ -1,0 +1,34 @@
+# height
+<height>  6 
+  (0 ,0 )
+<node1>  (0 ,0 )
+<node2>  (0 ,0 )
+<node3>  (0 ,0 )
+
+# draw face
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node3>  <node1>  <node1>  <node1> 
+        <Line>  <node0>  <node1>  <node2> 
+        <Line>  <node3>  <node0>  <node2> 
+        <Line>  <node3>  <node3>  <node2> 
+        <Line>  <node0>  <node3> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node4>  <node2> 
+        <Arc>  <node1>  <node4>  <node0>  <node3>  <node3> 
+        <Line>  <node6>  <node3>  <node5> 
+        <Line>  <node0>  <node5> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node6>  <node2> 
+        <Arc>  <node1>  <node4>  <node6>  <node3>  <node3> 
+        <Line>  <node0>  <node3> 
+    </loop> 
+</face>

@@ -1,0 +1,99 @@
+# height
+<height>  5 
+ noreferrer 
+
+<node1>  (51 ,49 )
+<node5>  (-28 ,49 )
+<node2>  (-28 ,11 )
+<node3>  (-28 ,11 )
+<node4>  (-28 ,5 )
+
+<node2>  (49 ,5 )
+
+<node2>  (-49 ,5 )
+k  (49 ,49 )
+
+<node5>  (49 ,49 )
+
+
+# define nodes
+<node0>  (-49 ,49 )
+
+vs 
+    <loop type="outer" >
+        <Line>  <node0>  <node1>  <node1> 
+        <Line>  <node2>  <node2>  1 
+        <Line>  <node3>  <node2>  <node2> 
+        <Line>  <node0>  <node3> 
+    </loop> 
+</face>  (-49 ,49 )
+
+<node5>  (12 ,0 )
+
+<node2>  (-49 ,65 )
+
+<node6>  (-49 ,49 )
+
+<node7>  (-49 ,49 )
+
+-5  (49 ,49 )
+
+<node8>  (20 ,49 )
+
+
+# draw face
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node3> 
+        <Line>  <node2>  <node2>  1 
+        <Line>  <node3>  <node2> 
+        <Line>  <node0>  <node3> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node4>  <node5> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node4>  <node6> 
+    </loop> 
+    <Line> 
+</face> 
+ex 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node4>  <node6> 
+    </loop> 
+    <Line> 
+</face> 
+ex 
+<node9> 
+    <loop type="inner" >
+        <Circle> <node4>  <node6> 
+    </loop> 
+    <Line> 
+</face> 
+ ex 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node4>  <node5> 
+    </loop> 
+    <Line> 
+</face> 
+ ex 
+
+# draw face
+<face> 
+    <loop type="outer" >
+        <Line>  <node3>  <node6> 
+        <Line>  <node1>  1 
+        <Line>  <node3>  <node2> 
+        <Line>  <node3>  <node2> 
+    </loop> 
+</face> 
+</face> 
+    <loop type="inner" >

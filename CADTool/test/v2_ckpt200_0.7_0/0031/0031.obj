@@ -1,0 +1,61 @@
+# WaveFront *.obj file
+# ExtrudeOperation: NewBodyFeatureOperation
+
+v 0.0 0.0
+v 0.0 0.98
+v -0.98 0.0
+v -0.98 0.05
+v 0.98 0.165
+v 0.98 -0.05
+v 0.735 -0.165
+v 0.955 0.165
+
+face
+out
+l 0 1 1
+l 2 1 2
+l 3 2 2
+l 0 3
+
+face
+out
+l 3 4 3
+l 5 4
+l 3 0 2
+l 5 0
+
+face
+in
+l 0 6
+l 5 4
+l 6 0
+l 3 4
+
+face
+in
+c 4 7
+
+face
+in
+l 0 8
+a 8 9
+l 8 9
+l 0 10
+
+face
+in
+c 0 10
+
+face
+in
+l 0 10
+l 10 8
+l 10 0
+l 3 8
+
+
+Extrude 0.0 0.01 
+T_origin 0.0 0.0 0.0
+T_xaxis 1 0 0
+T_yaxis 0 1 0
+T_zaxis 0 0 1

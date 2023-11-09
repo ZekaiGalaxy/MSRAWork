@@ -1,0 +1,91 @@
+# height
+<height>  39 
+  (0 ,0 )
+<node1>  (0 ,21 )
+<node2>  (0 ,8 )
+<node3>  (37 ,8 )
+<node4>  (25 ,8 )
+
+> 
+
+> 
+
+> 
+
+> 
+
+> 
+
+
+# define nodes
+
+<node0>  (25 ,8 )
+<node5>  (0 ,8 )
+
+<node1>  (0 ,21 )
+<node6>  (0 ,-21 )
+<node4>  (25 ,8 )
+
+Hand 
+    <loop type="outer" >
+        <Circle> <node0>  <node1> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node0>  <node2> 
+    </loop> 
+<node6>  (15 ,8 )
+    <loop type="outer" >
+        <Circle> <node2>  <node3>  <node1> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node2>  <node3> 
+    </loop> 
+</face>  (21 ,8 )
+    <loop type="outer" >
+        <Circle>  <node4>  <node5> 
+    </loop> 
+    <Arc> 
+</face>  (38 ,8 )
+    <loop type="outer" >
+        <Circle>  <node6>  <node5> 
+    </loop> 
+    <Arc> 
+</face>  (21 ,8 )
+    <loop type="inner" >
+        <Circle>  <node3> 
+    </loop> 
+    <Line> 
+    2 
+    <Line> 
+</face>  (30 ,8 )
+    <loop type="outer" >
+        <Circle>  <node6>  <node7> 
+    </loop> 
+    2 
+    . 
+    2 
+</face>  (30 ,8 )
+    <loop type="inner" >
+        <Circle>  <node7>  <node8> 
+    </loop> 
+    2 
+    2 
+    2 
+    <Line> 
+</face>  (-43 ,8 )
+    <loop type="inner" >
+        <Circle>  <node8>  <node9> 
+    </loop> 
+    2 
+    2 
+    2 
+    <Line> 
+</face>  (54 ,8 )
+    <loop type="inner" >
+        <Circle>  <node10> 
+    </loop> 
+    2 
+    2 
+    2 
+    <Line> 
+  (38 ,8 )

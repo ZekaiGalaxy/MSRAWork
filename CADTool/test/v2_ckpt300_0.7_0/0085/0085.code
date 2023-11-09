@@ -1,0 +1,59 @@
+# height
+<height>  7 
+ and 
+    <loop type="outer" )
+        <Line>  <node0>  <node1>  <node1> 
+        <Arc>  <node0>  <node3>  <node4>  <node3>  <node0> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node0>  <node6> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node0>  <node5> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node0>  <node6> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node3>  <node0>  <node4> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node5>  <node0>  <node4> 
+    </loop> 
+</face> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node0>  <node6> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node3>  <node0>  <node4> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node0>  <node5> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node0>  <node6> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node7>  <node4> 
+    </loop> 
+</face>

@@ -1,0 +1,60 @@
+# height
+<height>  2 
+increase
+    <loop type="outer" type="outer" >
+        <Line>  <node0>  <node1> 
+        <Line>  <node2>  <node0>  <node2> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node4>  <node5> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node4>  <node5> 
+    </loop> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node6> 
+        <Line>  <node0>  <node4> 
+        <Line>  <node3>  <node4>  <node2> 
+        <Line>  <node5> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node5> 
+    </loop> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node5>  <node6> 
+        <Line>  <node6>  <node4> 
+        <Line>  <node0>  <node4> 
+        <Line>  <node1> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node0>  <node1> 
+    </loop> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node6> 
+        <Line>  <node7>  <node6> 
+        <Line>  <node3>  <node6> 
+        <Line>  <node5> 
+    </loop> 
+        <Line>  <node5>  <node8> 
+        <Line>  <node5> 
+        <Line>  <node8>  <node4> 
+        <Line>  <node0> 
+    </loop> 
+</face>

@@ -1,0 +1,22 @@
+# height
+<height>  65 
+
+# define nodes
+<node0>  (0 ,0 )
+<node1>  (-196 ,0 )
+<node2>  (-196 ,65 )
+<node3>  (-131 ,65 )
+<node4>  (-131 ,33 )
+<node5>  (0 ,33 )
+
+# draw face
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node1> 
+        <Line>  <node1>  <node2> 
+        <Line>  <node2>  <node3> 
+        <Line>  <node3>  <node4> 
+        <Line>  <node4>  <node5> 
+        <Line>  <node0>  <node5> 
+    </loop> 
+</face>

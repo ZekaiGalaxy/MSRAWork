@@ -1,0 +1,55 @@
+# height
+<height>  22 
+  (0 ,0 )
+<node1>  (0 ,0 )
+<node2>  (0 ,0 )
+<node3>  (0 ,0 )
+<node4>  (0 ,0 )
+<node4>  (0 ,0 )
+<node5>  (0 ,0 )
+
+# draw face
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node3>  <node1>  <node2>  <node2>  <node1> 
+        <Arc>  <node1>  <node2>  <node1>  <node2>  <node2>  <node2> 
+        <Line>  <node0>  <node0>  <node2> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node3>  <node4>  <node0>  <node2>  <node4>  <node2> 
+        <Line>  <node4>  <node5>  <node2> 
+        <Line>  <node5>  <node0>  <node2> 
+        <Line>  <node1>  <node3>  <node2> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node5>  <node6>  <node4>  <node6>  <node5> 
+        <Arc>  <node0>  <node6>  <node5>  <node2>  <node2> 
+        <Line>  <node1>  <node4>  <node3> 
+    </loop> 
+</face> 
+</face> 
+<face> 
+    <loop type="inner" >
+        <Arc>  <node0>  <node8>  <node9>  <node4>  <node6>  <node5> 
+        <Line>  <node1>  <node8>  <node5> 
+        <Line>  <node0>  <node9>  <node10> 
+         don  <node0>  <node10>  <node8> 
+    </loop> 
+</face> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Line>  <node0>  <node11>  <node12>  <node4>  <node5> 
+        <Line>  <node4>  <node5> 
+        <Line>  <node0>  <node9> 
+         don  <node0>  <node5> 
+    </loop> 
+</face> 
+</face>

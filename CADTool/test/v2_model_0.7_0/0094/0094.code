@@ -1,0 +1,77 @@
+# height
+<height>  8 
+uminate 
+
+<node1>  (0 ,0 )
+<node4>  (21 ,0 )
+<node5>  (10 ,0 )
+
+> 
+
+> 
+
+<node5>  (22 ,0 )
+
+<node2>  (0 ,50 )
+<node6>  (-10 ,22 )
+str 
+
+j 
+    <loop type="outer" >
+        <Circle> <node0>  <node1> 
+    </loop> 
+</face> 
+    <loop type="inner" >
+        <Circle> <node2>  <node2>  <node1> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node0>  <node2> 
+    </loop> 
+    <Circle> 
+        <Circle> <node4>  <node5> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node0>  <node2> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node2>  <node5> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node2>  <node5> 
+    </loop> 
+    <loop type="inner" >
+        <Circle> <node6>  <node5> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node0>  <node6> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node1>  <node6> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node0>  <node4> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node7>  <node5> 
+    </loop> 
+</face> 
+<face> 
+<face> 
+    <loop type="inner" >
+        <Circle> <node5>  <node8> 
+    </loop> 
+    <loop type="inner" >
+        <Circle>  <node3>  <node8> 
+    </loop> 
+</face>

@@ -1,0 +1,20 @@
+# height
+<height>  1 
+
+# define nodes
+<node0>  (0 ,0 )
+<node1>  (7 ,0 )
+<node2>  (7 ,1 )
+<node3>  (0 ,1 )
+
+# draw face
+<face> 
+    <loop type="outer" >
+        <Circle> <node0>  <node1> 
+    </loop> 
+</face> 
+<face> 
+    <loop type="outer" >
+        <Circle> <node2>  <node3> 
+    </loop> 
+</face>

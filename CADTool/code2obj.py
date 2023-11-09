@@ -2,9 +2,10 @@ import os
 import re
 import cad_converter
 import argparse
+import cad_utils
 
 parser = argparse.ArgumentParser(description='Input Folder')
-parser.add_argument('input_folder', type=str, help='the path to the input folder')
+parser.add_argument('--input_folder', type=str, help='the path to the input folder')
 args = parser.parse_args()
 
 def code2json_handle(code):
