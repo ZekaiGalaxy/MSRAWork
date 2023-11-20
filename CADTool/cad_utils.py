@@ -46,7 +46,7 @@ def load_text(path):
 
 def save_jsonl(data, path):
     make_dir(path)
-    with open(path, 'w') as f:
+    with open(path, 'w+') as f:
         for d in data:
             json.dump(d, f)
             f.write('\n')
