@@ -51,10 +51,10 @@ def generate_text(prompts, model, tokenizer, temperature=1.0):
 # Example usage:
 model_name = "/zecheng/svg_model_hub/CAD_CodeLLaMA-7b_Ori/"  # Replace with the actual model name
 model, tokenizer = setup_model(model_name)
-prompts = [""]*512 # Replace with your actual prompts
+prompts = [""]*128 # Replace with your actual prompts
 temperature = args.t  # You can adjust the temperature as needed
 
 res = []
 generated_texts = generate_text(prompts, model, tokenizer, temperature)
 res.append({"case": generated_texts})
-save_jsonl(res, f"/f_ndata/zekai/inference_jsonl/Ori_model_512_{args.t}_{args.idx}.jsonl")
+save_jsonl(res, f"/f_ndata/zekai/inference_jsonl/Ori_model_128_{args.t}_{args.idx}.jsonl")
