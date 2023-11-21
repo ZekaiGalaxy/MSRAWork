@@ -17,7 +17,7 @@ T_origin 0 0 0
 T_xaxis 1  <mask> 0 
 T_yaxis 0  <mask> 0 
 T_zaxis 0 0 1 
-<unmask> # WaveFront *.obj file
+<unmask> 
 # Extrude Operation: New
 
 v 2 9 
@@ -34,5 +34,11 @@ T_yaxis 1 1 2
 T_zaxis 2 1 1
 """
 
-x = 
-print(x)
+def split_extrude(text):
+    parts = text.split("# Extrude Operation:")
+    ans = ["# WaveFront *.obj file\n# Extrude Operation:"+x for x in parts[1:]]
+    for xx in ans:
+        print(xx)
+        print('*'*20)
+
+split_extrude(text)

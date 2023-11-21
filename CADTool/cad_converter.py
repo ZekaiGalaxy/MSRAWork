@@ -1,4 +1,4 @@
-def obj2json(obj_data):
+def obj2json(obj_data, quantize=False):
     lines = obj_data.split('\n')[2:]
     lines = [x.strip() for x in lines if x!="\n"]
 
@@ -21,6 +21,9 @@ def obj2json(obj_data):
 
         if command == 'v':
             x, y = map(float, tokens[1:])
+            if quantize:
+                x = float(x / 200)
+                y = float(y / 200)
             data["vertices"].append({"x": x, "y": y})
 
         elif command == 'face':
@@ -40,6 +43,9 @@ def obj2json(obj_data):
 
         elif command == 'Extrude':
             l, h = map(float, tokens[1:])
+            if quantize:
+                l = float(l / 200)
+                h = float(h / 200)
             data["extrude"] = {"l": l, "h": h}
 
         elif command.startswith('T_'):
@@ -49,7 +55,7 @@ def obj2json(obj_data):
                 x, y, z = map(float, tokens[1:])
             else:
                 x, y, z = map(float, tokens[1:])
-            data["transformations"][axis] = {"x": x, "y": y, "z": z}
+            data["transformations"][axis] = {"x": int(x), "y": int(y), "z": int(z)}
 
     if current_face:
         data["faces"].append(current_face)
@@ -70,6 +76,16 @@ def format_json(data):
     data['transformations']['xaxis'] = {"x": 1, "y": 0, "z": 0}
     data['transformations']['yaxis'] = {"x": 0, "y": 1, "z": 0}
     data['transformations']['zaxis'] = {"x": 0, "y": 0, "z": 1}
+    return data
+
+def extrude_format_json(data):
+    l,h = data['extrude']['l'], data['extrude']['h']
+    data['extrude']['l'] = float(max(-200,round(l*200))/200)
+    data['extrude']['h'] = float(min(200,round(h*200))/200)
+    # make T origin to float
+    data['transformations']['origin']['x'] = float(data['transformations']['origin']['x'])
+    data['transformations']['origin']['y'] = float(data['transformations']['origin']['y'])
+    data['transformations']['origin']['z'] = float(data['transformations']['origin']['z'])
     return data
 
 def json2code(data):
