@@ -10,6 +10,8 @@ parser.add_argument('--t', type=float, default=1.0, help='A float')
 parser.add_argument('--num', type=int, default=512, help='A float')
 args = parser.parse_args()
 
+BATCH_SIZE = 32
+
 def save_jsonl(data, file_path):
     with open(file_path, 'w+', encoding='utf-8') as file:
         for record in data:
@@ -32,21 +34,31 @@ def setup_model(model_name):
 
 def generate_text(prompts, model, tokenizer, temperature=1.0):
     generated_texts = []
-    with tqdm(total=len(prompts), desc="Generating text") as pbar:
-        for prompt in prompts:
-            inputs = tokenizer.encode(prompt, return_tensors="pt").to(model.device)
-            outputs = model.generate(
-                inputs,
-                max_length=1024,
-                num_return_sequences=1,
-                do_sample=True,
-                temperature=temperature,
-                use_cache=True,
-            )
-            generated_text = tokenizer.decode(outputs[0], skip_special_tokens=False)
-            generated_text = generated_text.replace('<unk>', '').replace('<s>', '').strip()
-            generated_texts.append(generated_text)
+    with tqdm(total=len(prompts)//BATCH_SIZE, desc="Generating text") as pbar:
+        for i in range(len(prompts)//BATCH_SIZE):
+            prompt = prompts[i*BATCH_SIZE:(i+1)*BATCH_SIZE]
+        # for prompt in prompts:
+        #     inputs = tokenizer.encode(prompt, return_tensors="pt").to(model.device)
+            inputs = tokenizer(prompt, return_tensors='pt').to(model.device)
+            with torch.no_grad():
+                outputs = model.generate(
+                    **inputs,
+                    max_length=1024,
+                    num_return_sequences=1,
+                    do_sample=True,
+                    temperature=temperature,
+                    use_cache=True,
+                )
+            generated_text = tokenizer.batch_decode(outputs, skip_special_tokens=False)
+            generated_text = [x.replace('<unk>', '').replace('<s>', '').strip() for x in generated_text]
+            # print(len(generated_texts))
+            # for x in generated_texts:
+            #     print(x)
+            # generated_text = tokenizer.decode(outputs[0], skip_special_tokens=False)
+            # generated_text = generated_text.replace('<unk>', '').replace('<s>', '').strip()
+            generated_texts.extend(generated_text)
             pbar.update(1)
+            # pbar.update(1)
     return generated_texts
 
 # Example usage:
